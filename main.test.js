@@ -66,11 +66,14 @@ beforeEach(() => {
 describe('map', () => {
   it(`modifies each element of the given array by running it through the given function`, () => {
     const greetings = ['hi', 'hello', 'how are you'];
+
     const yell = function(greeting) {
       return greeting + '!'
     }
+
     const fish = ['whale', 'dogfish', 'nurse'];
     const sharks = ['whale shark', 'dogfish shark', 'nurse shark'];
+
     const makeShark = function(fish) {
       return `${fish} shark`;
     }
@@ -88,6 +91,7 @@ describe('map', () => {
     expect(todos).toEqual(originalTodos);
   })
 })
+
 
 describe('filter', () => {
   it(`returns a new array with only the elements of the given array that, when passed through the given function, return true`, () => {
@@ -125,7 +129,7 @@ describe('twoPileSort', () => {
       return greeting.length < 6;
     }
     
-    const hasFishInName= function(fish) {
+    const hasFishInName = function(fish) {
       return fish.includes('fish')
     }
 
