@@ -47,57 +47,74 @@ const getTodoName = function(todos) {
 }
 
 const getCompleteness = function (todos) {
-  
+  return todos.complete;
 }
 
-const getPriority = function () {
-  
+const getPriority = function (todos) {
+  return todos.priority;
 }
 
-const isComplete = function() {
-  
+const isComplete = function(todos) {
+  return todos.complete;
 }
 
-const isHighPriority = function() {
-  
+const isNotComplete = function(todos) {
+  return !todos.complete;
+}
+const isHighPriority = function(todos) {
+  return todos.priority == 2;
 }
 
+const isLowPriority = function(todos) {
+  return todos.priority == 1;
+}
 
 
 /***********************
  * ITERATION FUNCTIONS *
  ***********************/
 
-const names = function() {
-
+const names = function(todos) {
+  return map(todos, getTodoName);
 }
 
-const namesAndPriorities = function() {
-  
+const namesAndPriorities = function(todos) {
+  let newArr = [];
+
+  todos.forEach(todo => isHighPriority(todo) 
+    ? newArr.push(`${getTodoName(todo)} - High`) 
+    : newArr.push(`${getTodoName(todo)} - Low`));
+
+  return newArr;
 }
 
-const justNotComplete = function() {
-  
+const justNotComplete = function(todos) {
+  let newArr = [];
+
+  todos.forEach(todo => !isComplete(todo) ? newArr.push(todo) : '');
+
+  return newArr;
 }
 
-const justComplete = function() {
-  
+const justComplete = function(todos) {
+  return filter(todos, isComplete);
 }
 
-const priority2Only = function() {
-  
+const priority2Only = function(todos) {
+  return filter(todos, isHighPriority);
 }
 
-const priority1Only = function() {
-  
+const priority1Only = function(todos) {
+  return filter(todos, isLowPriority);
 }
 
-const notCompleteFirst = function() {
-  
+const notCompleteFirst = function(todos) {
+
+  return twoPileSort(todos, isNotComplete);
 }
 
-const priority2First = function() {
-  
+const priority2First = function(todos) {
+  return twoPileSort(todos, isHighPriority);
 }
 
 
