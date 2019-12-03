@@ -89,11 +89,7 @@ const namesAndPriorities = function(todos) {
 }
 
 const justNotComplete = function(todos) {
-  let newArr = [];
-
-  todos.forEach(todo => !isComplete(todo) ? newArr.push(todo) : '');
-
-  return newArr;
+  return filter(todos, isNotComplete);
 }
 
 const justComplete = function(todos) {
