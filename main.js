@@ -12,16 +12,28 @@ They'll also become easier later once you've written a few of the iteration func
 
 */
 
-const map = function() {
-
-}
-
-const filter = function() {
-
-}
-
-const twoPileSort = function() {
+const map = function(todos, func) {
+  let newArr = [];
   
+  todos.forEach(todo => newArr.push(func(todo)))
+
+  return newArr;
+}
+
+const filter = function(todos, func) {
+  let newArr = [];
+
+  todos.forEach(todo => func(todo) ? newArr.push(todo) : '');
+
+  return newArr;
+}
+
+const twoPileSort = function(todos, func) {
+  let newArr = [];
+
+  todos.forEach(todo => func(todo) ? newArr.unshift(todo) : newArr.push(todo));
+
+  return newArr;
 }
 
 
@@ -30,11 +42,11 @@ const twoPileSort = function() {
  * HELPER FUNCTIONS *
  ********************/
 
-const getTodoName = function() {
-
+const getTodoName = function(todos) {
+  return todos.text;
 }
 
-const getCompleteness = function () {
+const getCompleteness = function (todos) {
   
 }
 
