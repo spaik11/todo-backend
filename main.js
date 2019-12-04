@@ -34,6 +34,16 @@ const twoPileSort = function(todos, func) {
   todos.forEach(todo => func(todo) ? newArr.unshift(todo) : newArr.push(todo));
 
   return newArr;
+
+  // two-aray method
+  /*
+  const pile1 = filter(arr, test);
+  const pile2 = filter(arr, function (element) {
+    return !test(element)
+  })
+
+  return pile1.concat(pile2);
+  */
 }
 
 
@@ -61,6 +71,7 @@ const isComplete = function(todos) {
 const isNotComplete = function(todos) {
   return !todos.complete;
 }
+
 const isHighPriority = function(todos) {
   return todos.priority == 2;
 }
@@ -74,44 +85,21 @@ const isLowPriority = function(todos) {
  * ITERATION FUNCTIONS *
  ***********************/
 
-const names = function(todos) {
-  return map(todos, getTodoName);
-}
+const names = todos => todos.map(todo => todo.text);
 
-const namesAndPriorities = function(todos) {
-  let newArr = [];
+const namesAndPriorities = todos => todos.map(todo => todo.priority === 2 ? `${todo.text} - High` : `${todo.text} - Low`)
 
-  todos.forEach(todo => isHighPriority(todo) 
-    ? newArr.push(`${getTodoName(todo)} - High`) 
-    : newArr.push(`${getTodoName(todo)} - Low`));
+const justNotComplete = todos => todos.filter(todo => !todo.complete);
 
-  return newArr;
-}
+const justComplete = todos => todos.filter(todo => todo.complete);
 
-const justNotComplete = function(todos) {
-  return filter(todos, isNotComplete);
-}
+const priority2Only = todos => todos.filter(todo => todo.priority === 2);
 
-const justComplete = function(todos) {
-  return filter(todos, isComplete);
-}
+const priority1Only = todos => todos.filter(todo => todo.priority === 1);
 
-const priority2Only = function(todos) {
-  return filter(todos, isHighPriority);
-}
+const notCompleteFirst = todos => twoPileSort(todos, todo => !todo.complete);
 
-const priority1Only = function(todos) {
-  return filter(todos, isLowPriority);
-}
-
-const notCompleteFirst = function(todos) {
-
-  return twoPileSort(todos, isNotComplete);
-}
-
-const priority2First = function(todos) {
-  return twoPileSort(todos, isHighPriority);
-}
+const priority2First = todos => twoPileSort(todos, todo => todo.priority === 2);
 
 
 
