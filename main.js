@@ -28,22 +28,10 @@ const filter = function(todos, func) {
   return newArr;
 }
 
-const twoPileSort = function(todos, func) {
-  let newArr = [];
-
-  todos.forEach(todo => func(todo) ? newArr.unshift(todo) : newArr.push(todo));
-
-  return newArr;
-
-  // two-aray method
-  /*
-  const pile1 = filter(arr, test);
-  const pile2 = filter(arr, function (element) {
-    return !test(element)
-  })
-
+const twoPileSort = function(todos, test) {
+  const pile1 = filter(todos, test);
+  const pile2 = filter(todos, element => !test(element))
   return pile1.concat(pile2);
-  */
 }
 
 
